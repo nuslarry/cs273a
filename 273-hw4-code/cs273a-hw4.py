@@ -3,20 +3,21 @@
 
 # Question 1.1:
 
-# In[ ]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 import mltools as ml
 import math as math
+
+# Question 1.1
+
 entropy_y = 0.6*math.log(10/6.0,2) + 0.4*math.log(10/4.0,2)
 print("entropy H(y)=",entropy_y)
 
 
 # Question 1.2:
 
-# In[ ]:
 
 
 # x1 information gain
@@ -39,7 +40,6 @@ information_gain_3 = (7.0/10)*(entropy_y - ent_3_1) + (3.0/10)*(entropy_y - ent_
 print('Information gain for feature 3:, %0.4f' %(information_gain_3))
 
 
-# In[ ]:
 
 
 # x4 information gain 
@@ -55,15 +55,7 @@ information_gain_5 = (3.0/10)*(entropy_y - ent_5_1) + (7.0/10)*(entropy_y - ent_
 print('Information gain for feature 5:, %0.4f' %(information_gain_5))
 
 
-# I should split on variable 2 for the root node of the decision tree since it has the highest Information gain 0.6100
-
-# Question 1.3:
-# <img src="q1.3.png" alt="Drawing" style="width:550px;height:340px"/>
-
-# Question 2.1:
-
-# In[ ]:
-
+#question 2.1
 
 xt = np.genfromtxt('data/X_train.txt', delimiter=None)
 yt = np.genfromtxt('data/Y_train.txt', delimiter=None)
@@ -76,11 +68,14 @@ for i in range(xt.shape[1]):
     print()
 
 
+#question 2.2
+
 xt_0_10000 = xt[0:10000]
 yt_0_10000 = yt[0:10000]
 
 xv_10000_20000 = xt[10000:20000]
 yv_10000_20000 = yt[10000:20000]
+
 
 # training
 dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = 50)
@@ -99,9 +94,6 @@ yv_10000_20000_hat = dt.predict(xv_10000_20000)
 print('Training Error:, %0.4f' %(np.sum(yt_0_10000!=yt_0_10000_hat)/yt_0_10000.shape[0]))
 print('Validation Error:, %0.4f' %(np.sum(yv_10000_20000!=yv_10000_20000_hat)/yt_0_10000.shape[0]))
 
-
-
-# In[ ]:
 
 
 
