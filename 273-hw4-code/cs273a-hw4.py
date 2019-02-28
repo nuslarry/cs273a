@@ -92,7 +92,50 @@ yv_10000_20000_hat = dt.predict(xv_10000_20000)
 # yt_0_10000_hat = dt.predict(xt_0_10000)#[np.newaxis, :]
 
 print('Training Error:, %0.4f' %(np.sum(yt_0_10000!=yt_0_10000_hat)/yt_0_10000.shape[0]))
-print('Validation Error:, %0.4f' %(np.sum(yv_10000_20000!=yv_10000_20000_hat)/yt_0_10000.shape[0]))
+print('Validation Error:, %0.4f' %(np.sum(yv_10000_20000!=yv_10000_20000_hat)/yv_10000_20000.shape[0]))
+
+
+#question 2.3
+training_errs=[]
+validation_errs=[]
+for depth in range(16):
+    dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = depth)
+    yt_0_10000_hat = dt.predict(xt_0_10000)
+    yv_10000_20000_hat = dt.predict(xv_10000_20000)
+    training_err=np.sum(yt_0_10000!=yt_0_10000_hat)/yt_0_10000.shape[0]
+    validation_err=np.sum(yv_10000_20000!=yv_10000_20000_hat)/yv_10000_20000.shape[0]
+    training_errs.append(training_err)
+    validation_errs.append(validation_err)
+    
+print("training_errs.shape=",training_errs)
+plt.plot(range(16), training_errs, 'b-', linewidth=2)
+plt.plot(range(16), validation_errs, 'g-', linewidth=2)
+plt.xlabel('Depth')
+plt.ylabel('Error')
+plt.show()
+
+
+#question 2.4
+training_errs=[]
+validation_errs=[]
+for mp in 2**np.arange(2,12+1,1):
+    dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = 50, minParent=mp)
+    yt_0_10000_hat = dt.predict(xt_0_10000)
+    yv_10000_20000_hat = dt.predict(xv_10000_20000)
+    training_err=np.sum(yt_0_10000!=yt_0_10000_hat)/yt_0_10000.shape[0]
+    validation_err=np.sum(yv_10000_20000!=yv_10000_20000_hat)/yv_10000_20000.shape[0]
+    training_errs.append(training_err)
+    validation_errs.append(validation_err)    
+print("training_errs.shape=",training_errs)
+plt.plot(2**np.arange(2,12+1,1), training_errs, 'b-', linewidth=2)
+plt.plot(2**np.arange(2,12+1,1), validation_errs, 'g-', linewidth=2)
+plt.xscale('log',basex=2)
+plt.xlabel('minParent')
+plt.ylabel('Error')
+plt.show()
+
+
+
 
 
 
