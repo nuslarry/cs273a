@@ -140,5 +140,3 @@ print(test.shape)
 
 
 
-#test3ads
-
