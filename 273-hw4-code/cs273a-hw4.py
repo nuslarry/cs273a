@@ -136,7 +136,3 @@ dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = 9)
 test = dt.roc(xt_0_10000, yt_0_10000)
 print(type(test))
 print(test.shape)
-
-
-
-
