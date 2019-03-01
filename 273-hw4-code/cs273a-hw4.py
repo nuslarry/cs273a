@@ -40,8 +40,6 @@ information_gain_3 = (7.0/10)*(entropy_y - ent_3_1) + (3.0/10)*(entropy_y - ent_
 print('Information gain for feature 3:, %0.4f' %(information_gain_3))
 
 
-
-
 # x4 information gain 
 ent_4_1 = (2.0/7)*math.log(7.0/2,2) + (5.0/7)*math.log(7.0/5,2)
 ent_4_0 = (2.0/3)*math.log(3.0/2,2) + (1.0/3)*math.log(3.0,2)
@@ -66,7 +64,6 @@ for i in range(xt.shape[1]):
     print('mean of x%d:, %0.4f' %(i,np.mean(xt[:,0])))
     print('mean of x%d:, %0.4f' %(i,np.var(xt[:,0])))
     print()
-
 
 #question 2.2
 
@@ -126,7 +123,7 @@ for mp in 2**np.arange(2,12+1,1):
     validation_err=np.sum(yv_10000_20000!=yv_10000_20000_hat)/yv_10000_20000.shape[0]
     training_errs.append(training_err)
     validation_errs.append(validation_err)    
-print("training_errs.shape=",training_errs)
+    
 plt.plot(2**np.arange(2,12+1,1), training_errs, 'b-', linewidth=2)
 plt.plot(2**np.arange(2,12+1,1), validation_errs, 'g-', linewidth=2)
 plt.xscale('log',basex=2)
@@ -134,7 +131,11 @@ plt.xlabel('minParent')
 plt.ylabel('Error')
 plt.show()
 
-
+#question 2.6
+dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = 9)
+test = dt.roc(xt_0_10000, yt_0_10000)
+print(type(test))
+print(test.shape)
 
 
 
