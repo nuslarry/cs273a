@@ -133,14 +133,12 @@ plt.show()
 
 #question 2.6
 dt = ml.dtree.treeClassify(xt_0_10000, yt_0_10000, maxDepth = 9)
-
-yt_0_10000_hat = dt.predict(xt_0_10000)
-test = dt.roc(yt_0_10000, yt_0_10000_hat)
+test = dt.roc(xt_0_10000, yt_0_10000)
 print(type(test))
 print(test.shape)
 
 
-#sourceTree test
+
 
 
 
